@@ -1,0 +1,6 @@
+{
+  "name": "Nómada Propiedades",
+  "description": "Experiencia inmobiliaria cinematográfica y de autor. Donde cada agente abre su propio mundo de arquitectura singular, santuarios naturales y residencias atemporales.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
