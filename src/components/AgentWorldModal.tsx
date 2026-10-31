@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ArrowRight, ShieldCheck, MapPin, Compass, Calendar, ArrowUpRight } from 'lucide-react';
+import { X, ArrowRight, ShieldCheck, MapPin, Compass, Calendar, ArrowUpRight, Phone } from 'lucide-react';
 import { Agent, Property } from '../types/database';
 
 interface AgentWorldModalProps {
@@ -129,8 +129,8 @@ export const AgentWorldModal: React.FC<AgentWorldModalProps> = ({
                   </div>
                 </div>
 
-                {/* Action consultation button */}
-                <div className="pt-2">
+                {/* Action consultation button & direct phone/whatsapp */}
+                <div className="pt-2 flex flex-wrap items-center gap-3">
                   <button
                     onClick={() => onOpenConsultationWithAgent(agent)}
                     onMouseEnter={() => onCursorChange('Contactar', 'action')}
@@ -140,6 +140,31 @@ export const AgentWorldModal: React.FC<AgentWorldModalProps> = ({
                     <span>Conversar en privado con {agent.name.split(' ')[0]}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
+
+                  {agent.phone && (
+                    <a
+                      href={`tel:${agent.phone.replace(/\s+/g, '')}`}
+                      onMouseEnter={() => onCursorChange('Llamar', 'action')}
+                      onMouseLeave={() => onCursorChange('', 'default')}
+                      className="px-4 py-3 text-xs tracking-wider uppercase font-medium text-[#2F3A2B] bg-[#F4EFE6] hover:bg-[#EAE3D6] border border-[#2F3A2B]/20 rounded-full transition-all inline-flex items-center gap-2 cursor-pointer"
+                    >
+                      <Phone className="w-3.5 h-3.5 text-[#C2623F]" />
+                      <span className="font-mono">{agent.phone}</span>
+                    </a>
+                  )}
+
+                  {agent.whatsapp && (
+                    <a
+                      href={agent.whatsapp}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onMouseEnter={() => onCursorChange('WhatsApp', 'action')}
+                      onMouseLeave={() => onCursorChange('', 'default')}
+                      className="px-4 py-3 text-xs tracking-wider uppercase font-medium text-[#FAF7F2] bg-[#2E7D32] hover:bg-[#1B5E20] rounded-full transition-all inline-flex items-center gap-2 cursor-pointer shadow-sm"
+                    >
+                      <span>WhatsApp Directo</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

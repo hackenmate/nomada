@@ -2,15 +2,17 @@ import { Agent, Property, PropertyImage } from '../types/database';
 
 export const INITIAL_AGENTS: Agent[] = [
   {
-    id: 'agent_clara_moreau',
-    slug: 'clara-moreau',
-    name: 'Clara Moreau',
-    role: 'Curadora Internacional · Arquitectura Bioclimática & Fincas de Café',
+    id: 'agent_mariano_otazu',
+    slug: 'mariano-otazu-marin',
+    name: 'Mariano Otazu Marín',
+    role: 'Curador Director Internacional · Arquitectura Bioclimática & Fincas de Café',
     territory: 'Quillabamba & Valle del Urubamba, La Convención',
+    phone: '+51 950 155 945',
+    whatsapp: 'https://wa.me/51950155945?text=Hola%20Mariano%20Otazu,%20estoy%20interesado%20en%20las%20propiedades%20de%20NOMADA%20GROUP%20en%20La%20Convenci%C3%B3n,%20Cusco.',
     philosophy: 'Donde los Andes se funden con la selva alta, la arquitectura debe respirar con el dosel vegetal.',
-    manifesto_snippet: 'Selecciono fincas y residencias singulares en los valles subtropicales de La Convención, Cusco. Donde los cafetales de especialidad a 1.200 metros de altitud conviven con terrazas de piedra viva, cedro amazónico y ventilación cruzada natural.',
-    avatar_url: '/src/assets/images/agent_clara_portrait_1793475507694.jpg',
-    experience_years: 17,
+    manifesto_snippet: 'Con más de 22 años de trayectoria en Cusco y el cañón de La Convención, custodio residencias bioclimáticas y fincas de café Geisha a 1.200 m.s.n.m. Asesoría directa y confidencial para compradores e inversionistas internacionales.',
+    avatar_url: '/src/assets/images/agent_mariano_otazu_portrait_1793481670409.jpg',
+    experience_years: 22,
     active_properties_count: 2,
     accent_color: '#2F3A2B',
     quote: 'La Convención posee una energía telúrica única: el calor del trópico abrazado por los glaciares andinos.',
@@ -51,7 +53,7 @@ export const INITIAL_AGENTS: Agent[] = [
 export const INITIAL_PROPERTIES: Property[] = [
   {
     id: 'prop_villa_quillabamba',
-    agent_id: 'agent_clara_moreau',
+    agent_id: 'agent_mariano_otazu',
     title: 'Villa Quillabamba',
     tagline: 'Residencia bioclimática de piedra andina y cedro sobre cafetales de altura',
     architectural_style: 'Bioclimático Tropical Andino',

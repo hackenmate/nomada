@@ -2,10 +2,10 @@ import { Agent, Property, PropertyImage, ViewingInquiry } from '../types/databas
 import { INITIAL_AGENTS, INITIAL_PROPERTIES, INITIAL_PROPERTY_IMAGES } from './data';
 
 const STORAGE_KEYS = {
-  AGENTS: 'nomada_cusco_db_agents_v2',
-  PROPERTIES: 'nomada_cusco_db_properties_v2',
-  PROPERTY_IMAGES: 'nomada_cusco_db_images_v2',
-  INQUIRIES: 'nomada_cusco_db_inquiries_v2'
+  AGENTS: 'nomada_mariano_db_agents_v3',
+  PROPERTIES: 'nomada_mariano_db_properties_v3',
+  PROPERTY_IMAGES: 'nomada_mariano_db_images_v3',
+  INQUIRIES: 'nomada_mariano_db_inquiries_v3'
 };
 
 // SQL Schema for reference & inspection in UI

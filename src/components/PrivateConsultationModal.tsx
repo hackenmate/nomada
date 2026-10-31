@@ -117,6 +117,26 @@ export const PrivateConsultationModal: React.FC<PrivateConsultationModalProps> =
                     </option>
                   ))}
                 </select>
+
+                {(() => {
+                  const currentAgent = agents.find(a => a.id === selectedAgentId);
+                  if (!currentAgent?.phone) return null;
+                  return (
+                    <div className="mt-2.5 flex items-center justify-between text-xs bg-[#F4EFE6] px-3.5 py-2 rounded-xl border border-[#2F3A2B]/10">
+                      <span className="text-[#14110F]/70 font-mono">Tel: <strong className="text-[#2F3A2B]">{currentAgent.phone}</strong></span>
+                      {currentAgent.whatsapp && (
+                        <a
+                          href={currentAgent.whatsapp}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#2E7D32] hover:underline font-medium text-[11px]"
+                        >
+                          WhatsApp Inmediato ↗
+                        </a>
+                      )}
+                    </div>
+                  );
+                })()}
               </div>
 
               <div>

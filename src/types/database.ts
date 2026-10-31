@@ -12,6 +12,8 @@ export interface Agent {
   accent_color: string;
   quote: string;
   architectural_focus: string[];
+  phone?: string;
+  whatsapp?: string;
 }
 
 export interface Property {

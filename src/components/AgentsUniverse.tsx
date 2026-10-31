@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ArrowUpRight, Compass, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Compass, Sparkles, Phone } from 'lucide-react';
 import { Agent, Property } from '../types/database';
 
 interface AgentsUniverseProps {
@@ -93,6 +93,16 @@ export const AgentsUniverse: React.FC<AgentsUniverseProps> = ({
                   <p className="text-xs uppercase tracking-wider font-sans text-[#C2623F] mt-1 font-medium">
                     {agent.role}
                   </p>
+                  {agent.phone && (
+                    <a
+                      href={`tel:${agent.phone.replace(/\s+/g, '')}`}
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1.5 text-xs text-[#2F3A2B] font-mono mt-2 font-medium bg-[#F4EFE6] px-3 py-1 rounded-full border border-[#2F3A2B]/15 hover:bg-[#EAE3D6] transition-colors"
+                    >
+                      <Phone className="w-3 h-3 text-[#C2623F]" />
+                      <span>{agent.phone}</span>
+                    </a>
+                  )}
 
                   <p className="mt-4 text-sm text-[#14110F]/75 italic font-serif px-3 line-clamp-2">
                     &ldquo;{agent.quote}&rdquo;
