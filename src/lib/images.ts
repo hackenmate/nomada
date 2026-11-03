@@ -17,6 +17,13 @@ import propertyCasaDuna from '../assets/images/property_casa_duna_1793475508406.
 import propertyPalaceteBotanico from '../assets/images/property_palacete_botanico_1793475581714.jpg';
 import propertyRefugioAlerce from '../assets/images/property_refugio_alerce_1793475581358.jpg';
 
+import heroGlobeZoomVideo from '../assets/videos/hero_globe_zoom_valley.mp4';
+
+export const VIDEOS = {
+  heroGlobeZoom: heroGlobeZoomVideo,
+  heroGlobeZoomPublic: '/assets/videos/hero_globe_zoom_valley.mp4',
+};
+
 export const IMAGES = {
   // Agents
   agentMarianoOtazu: agentMarianoOtazuPortrait,

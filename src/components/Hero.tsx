@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { ArrowDown, MessageCircle, Phone } from 'lucide-react';
+import { ArrowDown, MessageCircle, Phone, Play, Pause, RotateCcw, Compass } from 'lucide-react';
 import { useSmoothScroll } from './SmoothScrollProvider';
-import { IMAGES, handleImageError } from '../lib/images';
+import { IMAGES, VIDEOS, handleImageError } from '../lib/images';
 
 interface HeroProps {
   onCursorChange: (text: string, variant: 'default' | 'agent' | 'property' | 'action') => void;
@@ -12,8 +12,30 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onCursorChange, onExploreAgents, isImmersive = false }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const { scrollTo } = useSmoothScroll();
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  const togglePlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!videoRef.current) return;
+    if (isPlaying) {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      videoRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+
+  const handleRestart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!videoRef.current) return;
+    videoRef.current.currentTime = 0;
+    videoRef.current.play();
+    setIsPlaying(true);
+  };
 
   // Parallax with mouse
   useEffect(() => {
@@ -204,30 +226,100 @@ export const Hero: React.FC<HeroProps> = ({ onCursorChange, onExploreAgents, isI
         </motion.div>
       </motion.div>
 
-      {/* Cinematic Preview Slice of Architecture */}
+      {/* Cinematic HD Satellite Presentation Banner (Zoom Tierra a Valle) */}
       <motion.div
         style={{ y: backdropParallax }}
-        className="relative z-10 max-w-7xl mx-auto w-full mt-12 rounded-3xl overflow-hidden shadow-2xl border border-[#2F3A2B]/10 max-h-[260px] md:max-h-[340px] group"
-        onMouseEnter={() => onCursorChange('Ver Cañón', 'property')}
+        className="relative z-10 max-w-7xl mx-auto w-full mt-12 rounded-3xl overflow-hidden shadow-2xl border border-[#2F3A2B]/15 min-h-[300px] md:min-h-[420px] aspect-[16/8.5] group cursor-pointer bg-[#0D120B]"
+        onMouseEnter={() => onCursorChange('Explorar Lotes', 'property')}
         onMouseLeave={() => onCursorChange('', 'default')}
-        onClick={() => scrollTo('#territorio')}
+        onClick={() => scrollTo('#mapas-lotes')}
       >
-        <img
-          src={IMAGES.heroLaConvencion}
-          alt="Cañón del Urubamba y ceja de selva en La Convención, Cusco, Perú"
-          onError={(e) => handleImageError(e)}
-          className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-1000 ease-out"
-          referrerPolicy="no-referrer"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#14110F]/85 via-[#14110F]/20 to-transparent flex items-end p-6 md:p-8">
-          <div className="text-[#FAF7F2] flex flex-col sm:flex-row sm:items-end justify-between w-full gap-2">
-            <div>
-              <p className="text-xs uppercase tracking-widest font-sans text-[#C2623F] font-semibold">Territorio Insigne · Cusco, Perú</p>
-              <h2 className="text-xl md:text-2xl font-serif">Cañón del Río Urubamba & Cordillera de Vilcabamba</h2>
-            </div>
-            <span className="text-xs tracking-wider uppercase font-mono text-[#FAF7F2]/80 pb-0.5">
-              Provincia de La Convención · 1.050 - 2.800 m.s.n.m.
+        {/* HD Background Video */}
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster={IMAGES.heroLaConvencion}
+          className="absolute inset-0 w-full h-full object-cover object-center filter contrast-[1.08] saturate-[1.12] brightness-[0.96] transition-transform duration-1000 ease-out group-hover:scale-[1.02]"
+        >
+          <source src={VIDEOS.heroGlobeZoom} type="video/mp4" />
+          <source src={VIDEOS.heroGlobeZoomPublic} type="video/mp4" />
+          <source src="/assets/aistudio/gemini_generated_video_09359924_eb099e1c.mp4" type="video/mp4" />
+          <img
+            src={IMAGES.heroLaConvencion}
+            alt="Cañón del Urubamba y ceja de selva en La Convención, Cusco, Perú"
+            onError={(e) => handleImageError(e)}
+            className="w-full h-full object-cover object-center"
+          />
+        </video>
+
+        {/* Ambient Overlay Gradients for Readability and Depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#14110F]/90 via-[#14110F]/25 to-[#14110F]/45 pointer-events-none" />
+
+        {/* Top Floating Badge Bar */}
+        <div className="absolute top-5 left-5 right-5 z-20 flex items-center justify-between gap-3 pointer-events-none">
+          <div className="flex items-center gap-2.5 bg-[#14110F]/70 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/15 text-[#FAF7F2] text-xs font-mono shadow-lg">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#C2623F] animate-ping" />
+            <span className="font-semibold tracking-wider uppercase text-[11px] text-[#FAF7F2]">
+              Presentación Satelital HD
             </span>
+            <span className="text-white/30 hidden sm:inline">|</span>
+            <span className="text-[10px] text-white/70 hidden sm:inline">
+              Vuelo Orbital ➜ Descenso al Valle de Lotes (3.340 msnm)
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2 pointer-events-auto">
+            <div className="px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-[10px] font-mono font-bold text-[#FAF7F2] tracking-wider uppercase">
+              4K · HD
+            </div>
+            <button
+              onClick={handleRestart}
+              className="p-2 rounded-full bg-black/50 hover:bg-black/75 backdrop-blur-md border border-white/15 text-white/80 hover:text-white transition-all cursor-pointer"
+              title="Reiniciar vuelo desde el espacio"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+            </button>
+            <button
+              onClick={togglePlay}
+              className="p-2 rounded-full bg-[#2F3A2B]/80 hover:bg-[#2F3A2B] backdrop-blur-md border border-white/20 text-[#FAF7F2] transition-all cursor-pointer"
+              title={isPlaying ? 'Pausar video' : 'Reproducir video'}
+            >
+              {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Bottom Banner Content */}
+        <div className="absolute inset-0 flex items-end p-6 md:p-10 pointer-events-none">
+          <div className="text-[#FAF7F2] flex flex-col md:flex-row md:items-end justify-between w-full gap-4">
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-2 text-xs uppercase tracking-widest font-mono text-[#C2623F] font-bold mb-1.5">
+                <Compass className="w-3.5 h-3.5 text-[#C2623F]" />
+                <span>Georreferenciación & Zonificación · Cusco, Perú</span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif text-[#FAF7F2] leading-tight">
+                Vuelo Orbital a los Valles de Anta & La Convención
+              </h2>
+              <p className="text-xs sm:text-sm text-[#FAF7F2]/80 font-light mt-1.5 max-w-xl">
+                Aterrizaje visual desde órbita terrestre hacia las parcelas campestres de Izcuchaca y las fincas de café en Huayopata.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 pointer-events-auto">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  scrollTo('#mapas-lotes');
+                }}
+                className="px-5 py-3 rounded-full bg-[#C2623F] hover:bg-[#A84E2E] text-[#FAF7F2] text-xs font-mono uppercase tracking-wider font-bold shadow-xl transition-all cursor-pointer flex items-center gap-2 group/btn"
+              >
+                <span>Explorar Mapas de Lotes</span>
+                <span className="transition-transform group-hover/btn:translate-x-1">➜</span>
+              </button>
+            </div>
           </div>
         </div>
       </motion.div>
