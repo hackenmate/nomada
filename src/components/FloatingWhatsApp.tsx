@@ -9,6 +9,7 @@ interface FloatingWhatsAppProps {
 
 export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onCursorChange }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const agentName = 'Mariano Otazu Marín';
   const agentRole = 'Curador Director · La Convención, Cusco';
@@ -107,39 +108,108 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onCursorChan
         )}
       </AnimatePresence>
 
-      {/* Floating launcher button */}
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => setIsOpen(!isOpen)}
-        onMouseEnter={() => onCursorChange?.(isOpen ? 'Cerrar' : 'WhatsApp', 'action')}
-        onMouseLeave={() => onCursorChange?.('', 'default')}
-        className="group flex items-center gap-3 bg-[#2E7D32] hover:bg-[#1B5E20] text-[#FAF7F2] pl-3.5 pr-4 py-3 rounded-full shadow-2xl border border-white/20 transition-all cursor-pointer"
-        aria-label="Contactar al agente por WhatsApp"
-      >
-        <div className="relative">
-          <img
-            src={IMAGES.agentMarianoOtazu}
-            alt="Mariano Otazu"
-            onError={(e) => handleImageError(e)}
-            className="w-8 h-8 rounded-full object-cover border border-white/40"
-            referrerPolicy="no-referrer"
-          />
-          <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#4ADE80] ring-2 ring-[#2E7D32] animate-pulse" />
-        </div>
+      {/* Floating launcher button with trailing effect */}
+      <div className="relative">
+        {/* Contenedor motion.div detrás del botón que crea un efecto de estela sutil (trailing effect) */}
+        <motion.div
+          animate={
+            isHovered
+              ? { scale: 1.22, opacity: 0.38 }
+              : { scale: 0.95, opacity: 0 }
+          }
+          transition={{
+            duration: isHovered ? 0.45 : 0.3,
+            ease: 'easeOut',
+          }}
+          className="absolute inset-0 rounded-full bg-[#2E7D32] blur-md -z-10 pointer-events-none"
+          aria-hidden="true"
+        />
+        <motion.div
+          animate={
+            isHovered
+              ? { scale: 1.36, opacity: 0.2 }
+              : { scale: 0.9, opacity: 0 }
+          }
+          transition={{
+            duration: isHovered ? 0.65 : 0.25,
+            delay: isHovered ? 0.05 : 0,
+            ease: 'easeOut',
+          }}
+          className="absolute inset-0 rounded-full bg-[#4ADE80] blur-lg -z-20 pointer-events-none"
+          aria-hidden="true"
+        />
 
-        <div className="text-left hidden sm:block">
-          <div className="text-[11px] font-mono leading-none tracking-tight opacity-90">
-            Mariano Otazu Marín
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          animate={
+            !isOpen
+              ? {
+                  scale: [1, 1.025, 1],
+                  boxShadow: [
+                    '0 10px 25px -5px rgba(46, 125, 50, 0.4), 0 0 0 0px rgba(74, 222, 128, 0.45)',
+                    '0 14px 30px -4px rgba(46, 125, 50, 0.5), 0 0 0 10px rgba(74, 222, 128, 0)',
+                    '0 10px 25px -5px rgba(46, 125, 50, 0.4), 0 0 0 0px rgba(74, 222, 128, 0)',
+                  ],
+                }
+              : {
+                  scale: 1,
+                  boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.3)',
+                }
+          }
+          transition={
+            !isOpen
+              ? {
+                  duration: 2.8,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }
+              : { duration: 0.2 }
+          }
+          onClick={() => setIsOpen(!isOpen)}
+          onMouseEnter={() => {
+            setIsHovered(true);
+            onCursorChange?.(isOpen ? 'Cerrar' : 'WhatsApp', 'action');
+          }}
+          onMouseLeave={() => {
+            setIsHovered(false);
+            onCursorChange?.('', 'default');
+          }}
+          className="group relative flex items-center gap-3 bg-[#2E7D32] hover:bg-[#1B5E20] text-[#FAF7F2] pl-3.5 pr-4 py-3 rounded-full shadow-2xl border border-white/20 transition-colors cursor-pointer select-none"
+          aria-label="Contactar al agente por WhatsApp"
+        >
+          {/* Halo orgánico sutil cuando el botón está cerrado */}
+          {!isOpen && (
+            <span
+              className="absolute -inset-1 rounded-full bg-[#2E7D32]/35 animate-ping pointer-events-none opacity-60"
+              style={{ animationDuration: '2.8s' }}
+              aria-hidden="true"
+            />
+          )}
+
+          <div className="relative">
+            <img
+              src={IMAGES.agentMarianoOtazu}
+              alt="Mariano Otazu"
+              onError={(e) => handleImageError(e)}
+              className="w-8 h-8 rounded-full object-cover border border-white/40"
+              referrerPolicy="no-referrer"
+            />
+            <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#4ADE80] ring-2 ring-[#2E7D32] animate-pulse" />
           </div>
-          <div className="text-[10px] font-sans uppercase tracking-widest font-semibold mt-0.5 text-white/90">
-            WhatsApp Agente
+
+          <div className="text-left hidden sm:block">
+            <div className="text-[11px] font-mono leading-none tracking-tight opacity-90">
+              Mariano Otazu Marín
+            </div>
+            <div className="text-[10px] font-sans uppercase tracking-widest font-semibold mt-0.5 text-white/90">
+              WhatsApp Agente
+            </div>
           </div>
-        </div>
 
-        <MessageCircle className="w-5 h-5 ml-0.5" />
-      </motion.button>
-
+          <MessageCircle className="w-5 h-5 ml-0.5" />
+        </motion.button>
+      </div>
     </div>
   );
 };
