@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { MapPin, Compass, Mountain, Coffee, Droplets } from 'lucide-react';
+import { IMAGES } from '../lib/images';
 
 interface TerritoryShowcaseProps {
   onCursorChange: (text: string, variant: 'default' | 'agent' | 'property' | 'action') => void;
@@ -13,7 +14,7 @@ export const TerritoryShowcase: React.FC<TerritoryShowcaseProps> = ({ onCursorCh
     {
       title: 'Quillabamba · Valle Central',
       altTitle: 'La Ciudad del Eterno Verano (1.050 m.s.n.m.)',
-      image: '/src/assets/images/property_villa_quillabamba_1793477326390.jpg',
+      image: IMAGES.villaQuillabamba,
       tagline: 'Fincas de café de especialidad, frutales exóticos y arquitectura bioclimática de cedro y piedra.',
       description: 'Capital de la provincia de La Convención. Su microclima subtropical cálido permite una vida al aire libre continua, con brisas que descienden de los nevados y alimentan los cafetales orgánicos más premiados del Perú.',
       stats: ['1.050 m.s.n.m.', 'Café Geisha & Cacao Chuncho', '26°C Promedio Anual']
@@ -21,7 +22,7 @@ export const TerritoryShowcase: React.FC<TerritoryShowcaseProps> = ({ onCursorCh
     {
       title: 'Cañón del Urubamba & Santa Teresa',
       altTitle: 'Ceja de Selva Alta & Aguas Termales',
-      image: '/src/assets/images/hero_la_convencion_cusco_1793477326244.jpg',
+      image: IMAGES.heroLaConvencion,
       tagline: 'Gargantas fluviales monumentales, andenes agrícolas incas y manantiales termomedicinales.',
       description: 'Donde el río Urubamba esculpe cañones vertiginosos antes de abrirse hacia la llanura amazónica. Fincas suspendidas sobre las colinas con vistas de 360 grados a la cordillera y acceso a los baños termales de Cocalmayo.',
       stats: ['1.550 m.s.n.m.', 'Baños Termales Cocalmayo', 'Ruta Salkantay']
@@ -29,7 +30,7 @@ export const TerritoryShowcase: React.FC<TerritoryShowcaseProps> = ({ onCursorCh
     {
       title: 'Vilcabamba · Cordillera Oriental',
       altTitle: 'El Último Bastión Incaico',
-      image: '/src/assets/images/property_santuario_vilcabamba_1793477328117.jpg',
+      image: IMAGES.santuarioVilcabamba,
       tagline: 'Bosques nubosos impenetrables, orquídeas silvestres y aislamiento aristocrático absoluto.',
       description: 'Cuna de la resistencia incaica. Un territorio donde la niebla matinal envuelve mesetas elevadas y quebradas secretas. Retiros arquitectónicos para quienes buscan privacidad total en comunión con la naturaleza virgen.',
       stats: ['2.200 m.s.n.m.', 'Ciudadelas Ocultas', 'Bosque de Niebla & Orquídeas']
@@ -37,7 +38,7 @@ export const TerritoryShowcase: React.FC<TerritoryShowcaseProps> = ({ onCursorCh
     {
       title: 'Terrazas & Quebradas de Altura',
       altTitle: 'Geografía Sagrada de La Convención',
-      image: '/src/assets/images/landscape_la_convencion_mist_1793477329367.jpg',
+      image: IMAGES.landscapeMist,
       tagline: 'Mosaico de andenes prehispánicos y vegetación tropical de montaña.',
       description: 'La provincia más extensa del departamento del Cusco es también su secreto arquitectónico mejor guardado. Un ecosistema que combina la majestuosidad andina con la exuberancia de la selva virgen.',
       stats: ['30.000 km² de Territorio', 'Biodiversidad Endémica', 'Agua de Glaciar']

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Database, ArrowUp } from 'lucide-react';
+import { Database, ArrowUp, MessageCircle, Phone } from 'lucide-react';
 import { useSmoothScroll } from './SmoothScrollProvider';
 
 interface FooterProps {
@@ -37,24 +37,38 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="lg:col-span-6 flex flex-col sm:flex-row items-start sm:items-center justify-lg-end gap-6 lg:text-right">
             <div className="space-y-1">
               <span className="text-xs uppercase tracking-widest text-[#C2623F] font-semibold">
-                Sede Territorial
+                Sede Territorial · La Convención
               </span>
               <p className="text-xs font-mono text-[#FAF7F2]/80">
-                Valle de Quillabamba · La Convención, Cusco, Perú
+                Mariano Otazu Marín · <a href="tel:+51950155945" className="hover:text-white underline">+51 950 155 945</a>
               </p>
               <p className="text-xs font-mono text-[#FAF7F2]/60">
-                Red Internacional: Cusco · Lima · Madrid · París
+                Valle de Quillabamba · Cusco · Lima · Madrid · París
               </p>
             </div>
 
-            <button
-              onClick={onOpenConsultation}
-              onMouseEnter={() => onCursorChange('Cita', 'action')}
-              onMouseLeave={() => onCursorChange('', 'default')}
-              className="px-6 py-3 text-xs tracking-widest uppercase font-medium bg-[#FAF7F2] text-[#14110F] rounded-full hover:bg-[#F4EFE6] transition-all cursor-pointer shadow-lg whitespace-nowrap"
-            >
-              Iniciar Conversación
-            </button>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href="https://wa.me/51950155945?text=Hola%20Mariano%20Otazu%20Mar%C3%ADn,%20me%20pongo%20en%20contacto%20desde%20NOMADA%20GROUP%20para%20solicitar%20informaci%C3%B3n%20y%20asesor%C3%ADa%20personalizada%20sobre%20propiedades%20y%20fincas%20en%20La%20Convenci%C3%B3n,%20Cusco."
+                target="_blank"
+                rel="noopener noreferrer"
+                onMouseEnter={() => onCursorChange('WhatsApp', 'action')}
+                onMouseLeave={() => onCursorChange('', 'default')}
+                className="px-5 py-3 text-xs tracking-wider uppercase font-medium bg-[#2E7D32] hover:bg-[#1B5E20] text-[#FAF7F2] rounded-full transition-all cursor-pointer shadow-lg inline-flex items-center justify-center gap-2"
+              >
+                <MessageCircle className="w-3.5 h-3.5" />
+                <span>WhatsApp Agente</span>
+              </a>
+
+              <button
+                onClick={onOpenConsultation}
+                onMouseEnter={() => onCursorChange('Cita', 'action')}
+                onMouseLeave={() => onCursorChange('', 'default')}
+                className="px-6 py-3 text-xs tracking-widest uppercase font-medium bg-[#FAF7F2] text-[#14110F] rounded-full hover:bg-[#F4EFE6] transition-all cursor-pointer shadow-lg whitespace-nowrap"
+              >
+                Iniciar Conversación
+              </button>
+            </div>
           </div>
         </div>
 

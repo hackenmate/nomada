@@ -163,6 +163,20 @@ export const Header: React.FC<HeaderProps> = ({
             )}
           </button>
 
+          {/* Direct Agent WhatsApp quick access */}
+          <a
+            href="https://wa.me/51950155945?text=Hola%20Mariano%20Otazu%20Mar%C3%ADn,%20me%20pongo%20en%20contacto%20desde%20NOMADA%20GROUP%20para%20solicitar%20informaci%C3%B3n%20y%20asesor%C3%ADa%20personalizada%20sobre%20propiedades%20y%20fincas%20en%20La%20Convenci%C3%B3n,%20Cusco."
+            target="_blank"
+            rel="noopener noreferrer"
+            onMouseEnter={() => onCursorChange('WhatsApp', 'action')}
+            onMouseLeave={() => onCursorChange('', 'default')}
+            className="hidden xl:inline-flex items-center gap-2 px-3 py-1.5 text-xs text-[#2E7D32] border border-[#2E7D32]/30 bg-[#2E7D32]/5 rounded-full hover:bg-[#2E7D32]/10 transition-all font-mono"
+            title="Mariano Otazu Marín (+51 950 155 945)"
+          >
+            <span className="w-2 h-2 rounded-full bg-[#2E7D32] animate-pulse" />
+            <span>WSP +51 950 155 945</span>
+          </a>
+
           {/* Dedicated Modo Inmersivo Button */}
           <button
             onClick={onToggleImmersive}

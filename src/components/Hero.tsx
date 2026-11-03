@@ -1,7 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, MessageCircle, Phone } from 'lucide-react';
 import { useSmoothScroll } from './SmoothScrollProvider';
+import { IMAGES } from '../lib/images';
 
 interface HeroProps {
   onCursorChange: (text: string, variant: 'default' | 'agent' | 'property' | 'action') => void;
@@ -167,24 +168,37 @@ export const Hero: React.FC<HeroProps> = ({ onCursorChange, onExploreAgents, isI
             </p>
           </div>
 
-          <div className="lg:col-span-5 flex flex-col sm:flex-row items-start sm:items-center justify-end gap-4">
+          <div className="lg:col-span-5 flex flex-col sm:flex-row items-start sm:items-center justify-end gap-3.5">
             <button
               onClick={onExploreAgents}
               onMouseEnter={() => onCursorChange('Mundos', 'action')}
               onMouseLeave={() => onCursorChange('', 'default')}
-              className="px-7 py-4 text-xs font-medium tracking-widest uppercase bg-[#2F3A2B] text-[#FAF7F2] rounded-full hover:bg-[#1E261B] hover:shadow-xl transition-all cursor-pointer inline-flex items-center gap-3"
+              className="px-6 py-3.5 text-xs font-medium tracking-widest uppercase bg-[#2F3A2B] text-[#FAF7F2] rounded-full hover:bg-[#1E261B] hover:shadow-xl transition-all cursor-pointer inline-flex items-center gap-3"
             >
-              <span>Explorar los 3 Mundos</span>
+              <span>Explorar Mundos</span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#C2623F]" />
             </button>
+
+            <a
+              href="https://wa.me/51950155945?text=Hola%20Mariano%20Otazu%20Mar%C3%ADn,%20me%20pongo%20en%20contacto%20desde%20NOMADA%20GROUP%20para%20solicitar%20informaci%C3%B3n%20y%20asesor%C3%ADa%20personalizada%20sobre%20propiedades%20y%20fincas%20en%20La%20Convenci%C3%B3n,%20Cusco."
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseEnter={() => onCursorChange('WhatsApp', 'action')}
+              onMouseLeave={() => onCursorChange('', 'default')}
+              className="px-5 py-3.5 text-xs font-medium tracking-wider uppercase text-[#FAF7F2] bg-[#2E7D32] hover:bg-[#1B5E20] rounded-full transition-all cursor-pointer inline-flex items-center gap-2 shadow-md"
+              title="Contactar directamente a Mariano Otazu Marín (+51 950 155 945) vía WhatsApp"
+            >
+              <MessageCircle className="w-3.5 h-3.5" />
+              <span>WhatsApp Agente</span>
+            </a>
 
             <button
               onClick={() => scrollTo('#territorio')}
               onMouseEnter={() => onCursorChange('Cusco', 'action')}
               onMouseLeave={() => onCursorChange('', 'default')}
-              className="px-6 py-4 text-xs font-medium tracking-widest uppercase text-[#14110F]/70 hover:text-[#14110F] transition-colors cursor-pointer"
+              className="px-4 py-3.5 text-xs font-medium tracking-widest uppercase text-[#14110F]/70 hover:text-[#14110F] transition-colors cursor-pointer"
             >
-              Ver La Convención
+              Cusco
             </button>
           </div>
         </motion.div>
@@ -199,7 +213,7 @@ export const Hero: React.FC<HeroProps> = ({ onCursorChange, onExploreAgents, isI
         onClick={() => scrollTo('#territorio')}
       >
         <img
-          src="/src/assets/images/hero_la_convencion_cusco_1793477326244.jpg"
+          src={IMAGES.heroLaConvencion}
           alt="Cañón del Urubamba y ceja de selva en La Convención, Cusco, Perú"
           className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-1000 ease-out"
           referrerPolicy="no-referrer"

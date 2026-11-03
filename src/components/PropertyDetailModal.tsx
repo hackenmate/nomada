@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, MapPin, Compass, CheckCircle2, Calendar, Phone, Mail, User, Layers, ArrowRight } from 'lucide-react';
+import { X, MapPin, Compass, CheckCircle2, Calendar, Phone, Mail, User, Layers, ArrowRight, MessageCircle } from 'lucide-react';
 import { Property, Agent } from '../types/database';
 import { dataService } from '../lib/supabase-client';
 
@@ -247,13 +247,26 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                       <img
                         src={agent.avatar_url}
                         alt={agent.name}
-                        className="w-16 h-16 rounded-full object-cover border border-[#2F3A2B]/20"
+                        className="w-16 h-16 rounded-full object-cover border border-[#2F3A2B]/20 shrink-0"
                         referrerPolicy="no-referrer"
                       />
-                      <div>
+                      <div className="min-w-0 flex-1">
                         <h4 className="text-lg font-serif text-[#14110F]">{agent.name}</h4>
                         <p className="text-xs text-[#C2623F] font-medium">{agent.role}</p>
-                        <p className="text-xs text-[#14110F]/60 mt-1 font-mono">{agent.territory}</p>
+                        <p className="text-xs text-[#14110F]/60 mt-0.5 font-mono">{agent.phone || '+51 950 155 945'}</p>
+                        
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          <a
+                            href={`https://wa.me/51950155945?text=${encodeURIComponent(`Hola ${agent.name}, estoy interesado en la propiedad "${property.title}" (${property.location}) de NOMADA GROUP.`)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#2E7D32] hover:bg-[#1B5E20] text-[#FAF7F2] rounded-full text-[11px] font-sans font-medium transition-all shadow-sm"
+                            title={`Consultar a ${agent.name} por WhatsApp`}
+                          >
+                            <MessageCircle className="w-3 h-3" />
+                            <span>Consultar por WhatsApp</span>
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>

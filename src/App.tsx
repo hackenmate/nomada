@@ -12,6 +12,7 @@ import { AgentWorldModal } from './components/AgentWorldModal';
 import { PropertyDetailModal } from './components/PropertyDetailModal';
 import { SchemaDrawer } from './components/SchemaDrawer';
 import { PrivateConsultationModal } from './components/PrivateConsultationModal';
+import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { Footer } from './components/Footer';
 import { dataService } from './lib/supabase-client';
 import { ambientSound } from './lib/audio';
@@ -212,6 +213,11 @@ export default function App() {
           agents={agents}
           initialAgent={consultationAgent}
         />
+
+        {/* Floating WhatsApp Agent Direct Contact */}
+        {!isImmersive && (
+          <FloatingWhatsApp onCursorChange={handleCursorChange} />
+        )}
 
       </div>
     </SmoothScrollProvider>

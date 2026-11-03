@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, CheckCircle2, ArrowRight } from 'lucide-react';
+import { X, CheckCircle2, ArrowRight, MessageCircle } from 'lucide-react';
 import { Agent } from '../types/database';
 import { dataService } from '../lib/supabase-client';
 
@@ -129,9 +129,10 @@ export const PrivateConsultationModal: React.FC<PrivateConsultationModalProps> =
                           href={currentAgent.whatsapp}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[#2E7D32] hover:underline font-medium text-[11px]"
+                          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#2E7D32] text-[#FAF7F2] font-medium text-[11px] hover:bg-[#1B5E20] transition-colors shadow-sm"
                         >
-                          WhatsApp Inmediato ↗
+                          <MessageCircle className="w-3 h-3" />
+                          <span>WhatsApp Directo</span>
                         </a>
                       )}
                     </div>

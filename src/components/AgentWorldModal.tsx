@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ArrowRight, ShieldCheck, MapPin, Compass, Calendar, ArrowUpRight, Phone } from 'lucide-react';
+import { X, ArrowRight, ShieldCheck, MapPin, Compass, Calendar, ArrowUpRight, Phone, MessageCircle } from 'lucide-react';
 import { Agent, Property } from '../types/database';
 
 interface AgentWorldModalProps {
@@ -162,6 +162,7 @@ export const AgentWorldModal: React.FC<AgentWorldModalProps> = ({
                       onMouseLeave={() => onCursorChange('', 'default')}
                       className="px-4 py-3 text-xs tracking-wider uppercase font-medium text-[#FAF7F2] bg-[#2E7D32] hover:bg-[#1B5E20] rounded-full transition-all inline-flex items-center gap-2 cursor-pointer shadow-sm"
                     >
+                      <MessageCircle className="w-3.5 h-3.5" />
                       <span>WhatsApp Directo</span>
                     </a>
                   )}
