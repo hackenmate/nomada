@@ -37,4 +37,13 @@ export const IMAGES = {
   refugioAlerce: propertyRefugioAlerce,
 };
 
+export const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>, fallbackUrl?: string) => {
+  const target = e.currentTarget;
+  if (fallbackUrl && target.src !== fallbackUrl) {
+    target.src = fallbackUrl;
+  } else if (!target.src.includes('data:image/svg+xml')) {
+    target.src = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600"><rect width="800" height="600" fill="%232F3A2B"/><text x="400" y="280" font-family="serif" font-size="28" fill="%23FAF7F2" text-anchor="middle">NOMADA GROUP</text><text x="400" y="320" font-family="sans-serif" font-size="13" fill="%23C2623F" text-anchor="middle" letter-spacing="4">LA CONVENCIÓN · CUSCO, PERÚ</text><text x="400" y="350" font-family="monospace" font-size="11" fill="%23FAF7F2" fill-opacity="0.6" text-anchor="middle">MARIANO OTAZU · +51 950 155 945</text></svg>`;
+  }
+};
+
 export default IMAGES;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MessageCircle, X, ArrowUpRight, Phone } from 'lucide-react';
-import { IMAGES } from '../lib/images';
+import { IMAGES, handleImageError } from '../lib/images';
 
 interface FloatingWhatsAppProps {
   onCursorChange?: (text: string, variant: 'default' | 'agent' | 'property' | 'action') => void;
@@ -39,6 +39,7 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onCursorChan
                   <img
                     src={IMAGES.agentMarianoOtazu}
                     alt={agentName}
+                    onError={(e) => handleImageError(e)}
                     className="w-12 h-12 rounded-full object-cover border border-[#2F3A2B]/20"
                     referrerPolicy="no-referrer"
                   />
@@ -120,6 +121,7 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ onCursorChan
           <img
             src={IMAGES.agentMarianoOtazu}
             alt="Mariano Otazu"
+            onError={(e) => handleImageError(e)}
             className="w-8 h-8 rounded-full object-cover border border-white/40"
             referrerPolicy="no-referrer"
           />

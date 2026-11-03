@@ -89,6 +89,12 @@ export const Footer: React.FC<FooterProps> = ({
               La Convención
             </button>
             <button
+              onClick={() => scrollTo('#mapas-lotes')}
+              className="hover:text-[#FAF7F2] transition-colors cursor-pointer text-[#C2623F] font-medium"
+            >
+              Mapas Izcuchaca & Huayopata
+            </button>
+            <button
               onClick={() => scrollTo('#colecciones')}
               className="hover:text-[#FAF7F2] transition-colors cursor-pointer"
             >

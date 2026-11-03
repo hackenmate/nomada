@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { MapPin, ArrowUpRight, Compass, SlidersHorizontal } from 'lucide-react';
 import { Agent, Property } from '../types/database';
+import { handleImageError } from '../lib/images';
 
 interface CollectionsSectionProps {
   properties: Property[];
@@ -90,6 +91,7 @@ export const CollectionsSection: React.FC<CollectionsSectionProps> = ({
                   <img
                     src={prop.cover_image}
                     alt={prop.title}
+                    onError={(e) => handleImageError(e)}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
                     referrerPolicy="no-referrer"
                   />
@@ -153,6 +155,7 @@ export const CollectionsSection: React.FC<CollectionsSectionProps> = ({
                         <img
                           src={agent.avatar_url}
                           alt={agent.name}
+                          onError={(e) => handleImageError(e)}
                           className="w-7 h-7 rounded-full object-cover border border-[#2F3A2B]/20"
                           referrerPolicy="no-referrer"
                         />

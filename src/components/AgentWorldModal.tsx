@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ArrowRight, ShieldCheck, MapPin, Compass, Calendar, ArrowUpRight, Phone, MessageCircle } from 'lucide-react';
 import { Agent, Property } from '../types/database';
+import { handleImageError } from '../lib/images';
 
 interface AgentWorldModalProps {
   agent: Agent | null;
@@ -84,6 +85,7 @@ export const AgentWorldModal: React.FC<AgentWorldModalProps> = ({
                   <img
                     src={agent.avatar_url}
                     alt={agent.name}
+                    onError={(e) => handleImageError(e)}
                     className="w-full h-full object-cover object-top"
                     referrerPolicy="no-referrer"
                   />
@@ -199,6 +201,7 @@ export const AgentWorldModal: React.FC<AgentWorldModalProps> = ({
                       <img
                         src={prop.cover_image}
                         alt={prop.title}
+                        onError={(e) => handleImageError(e)}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                         referrerPolicy="no-referrer"
                       />

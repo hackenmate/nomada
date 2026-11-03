@@ -8,6 +8,7 @@ import { AgentsUniverse } from './components/AgentsUniverse';
 import { CollectionsSection } from './components/CollectionsSection';
 import { ManifestoSection } from './components/ManifestoSection';
 import { TerritoryShowcase } from './components/TerritoryShowcase';
+import { TerritoryMapsSection } from './components/TerritoryMapsSection';
 import { AgentWorldModal } from './components/AgentWorldModal';
 import { PropertyDetailModal } from './components/PropertyDetailModal';
 import { SchemaDrawer } from './components/SchemaDrawer';
@@ -152,6 +153,11 @@ export default function App() {
 
         {/* 3. TERRITORIO: LA CONVENCIÓN, CUSCO, PERÚ (Fotografías & Geografía) */}
         <TerritoryShowcase
+          onCursorChange={handleCursorChange}
+        />
+
+        {/* 3.1 CARTOGRAFÍA INTERACTIVA: MAPAS DE IZCUCHACA & HUAYOPATA (Lotes en venta & proyección futura) */}
+        <TerritoryMapsSection
           onCursorChange={handleCursorChange}
         />
 

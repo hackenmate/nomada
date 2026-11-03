@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { MapPin, Compass, Mountain, Coffee, Droplets } from 'lucide-react';
-import { IMAGES } from '../lib/images';
+import { IMAGES, handleImageError } from '../lib/images';
 
 interface TerritoryShowcaseProps {
   onCursorChange: (text: string, variant: 'default' | 'agent' | 'property' | 'action') => void;
@@ -98,6 +98,7 @@ export const TerritoryShowcase: React.FC<TerritoryShowcaseProps> = ({ onCursorCh
               <img
                 src={zones[activeZone].image}
                 alt={zones[activeZone].title}
+                onError={(e) => handleImageError(e)}
                 className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
                 referrerPolicy="no-referrer"
               />
@@ -116,7 +117,7 @@ export const TerritoryShowcase: React.FC<TerritoryShowcaseProps> = ({ onCursorCh
                     activeZone === i ? 'border-[#C2623F] scale-102 shadow-md' : 'border-transparent opacity-60 hover:opacity-100'
                   }`}
                 >
-                  <img src={z.image} alt={z.title} className="w-full h-full object-cover" />
+                  <img src={z.image} alt={z.title} onError={(e) => handleImageError(e)} className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>

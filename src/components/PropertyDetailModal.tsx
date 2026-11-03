@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { X, MapPin, Compass, CheckCircle2, Calendar, Phone, Mail, User, Layers, ArrowRight, MessageCircle } from 'lucide-react';
 import { Property, Agent } from '../types/database';
 import { dataService } from '../lib/supabase-client';
+import { handleImageError } from '../lib/images';
 
 interface PropertyDetailModalProps {
   property: Property | null;
@@ -109,6 +110,7 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                 <img
                   src={images[activeImageIndex] || property.cover_image}
                   alt={property.title}
+                  onError={(e) => handleImageError(e)}
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
@@ -133,7 +135,7 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                         activeImageIndex === idx ? 'border-[#C2623F] scale-102' : 'border-transparent opacity-60 hover:opacity-100'
                       }`}
                     >
-                      <img src={img} alt={`Vista ${idx + 1}`} className="w-full h-full object-cover" />
+                      <img src={img} alt={`Vista ${idx + 1}`} onError={(e) => handleImageError(e)} className="w-full h-full object-cover" />
                     </button>
                   ))}
                 </div>
@@ -247,6 +249,7 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                       <img
                         src={agent.avatar_url}
                         alt={agent.name}
+                        onError={(e) => handleImageError(e)}
                         className="w-16 h-16 rounded-full object-cover border border-[#2F3A2B]/20 shrink-0"
                         referrerPolicy="no-referrer"
                       />

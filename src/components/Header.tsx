@@ -115,7 +115,15 @@ export const Header: React.FC<HeaderProps> = ({
             onMouseLeave={() => onCursorChange('', 'default')}
             className="hover:text-[#14110F] transition-colors whitespace-nowrap shrink-0 relative py-1 hover:border-b hover:border-[#2F3A2B] cursor-pointer"
           >
-            La Convención (Cusco)
+            La Convención
+          </button>
+          <button
+            onClick={() => scrollTo('#mapas-lotes')}
+            onMouseEnter={() => onCursorChange('Mapas', 'action')}
+            onMouseLeave={() => onCursorChange('', 'default')}
+            className="hover:text-[#14110F] transition-colors whitespace-nowrap shrink-0 relative py-1 hover:border-b hover:border-[#2F3A2B] cursor-pointer font-medium text-[#C2623F]"
+          >
+            Mapas Izcuchaca & Huayopata
           </button>
           <button
             onClick={() => scrollTo('#colecciones')}

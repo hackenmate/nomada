@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowUpRight, Compass, Sparkles, Phone, MessageCircle } from 'lucide-react';
 import { Agent, Property } from '../types/database';
+import { handleImageError } from '../lib/images';
 
 interface AgentsUniverseProps {
   agents: Agent[];
@@ -77,6 +78,7 @@ export const AgentsUniverse: React.FC<AgentsUniverseProps> = ({
                     <img
                       src={agent.avatar_url}
                       alt={agent.name}
+                      onError={(e) => handleImageError(e)}
                       className="w-full h-full object-cover object-top filter contrast-[1.02]"
                       referrerPolicy="no-referrer"
                     />
@@ -159,6 +161,7 @@ export const AgentsUniverse: React.FC<AgentsUniverseProps> = ({
                       <img
                         src={primaryProperty.cover_image}
                         alt={primaryProperty.title}
+                        onError={(e) => handleImageError(e)}
                         className="w-14 h-14 rounded-xl object-cover shrink-0"
                         referrerPolicy="no-referrer"
                       />

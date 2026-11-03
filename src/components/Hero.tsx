@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowDown, MessageCircle, Phone } from 'lucide-react';
 import { useSmoothScroll } from './SmoothScrollProvider';
-import { IMAGES } from '../lib/images';
+import { IMAGES, handleImageError } from '../lib/images';
 
 interface HeroProps {
   onCursorChange: (text: string, variant: 'default' | 'agent' | 'property' | 'action') => void;
@@ -193,12 +193,12 @@ export const Hero: React.FC<HeroProps> = ({ onCursorChange, onExploreAgents, isI
             </a>
 
             <button
-              onClick={() => scrollTo('#territorio')}
-              onMouseEnter={() => onCursorChange('Cusco', 'action')}
+              onClick={() => scrollTo('#mapas-lotes')}
+              onMouseEnter={() => onCursorChange('Mapas', 'action')}
               onMouseLeave={() => onCursorChange('', 'default')}
-              className="px-4 py-3.5 text-xs font-medium tracking-widest uppercase text-[#14110F]/70 hover:text-[#14110F] transition-colors cursor-pointer"
+              className="px-4 py-3.5 text-xs font-medium tracking-widest uppercase text-[#C2623F] hover:text-[#A85437] transition-colors cursor-pointer border border-[#C2623F]/30 rounded-full hover:bg-[#C2623F]/5"
             >
-              Cusco
+              Mapas de Lotes
             </button>
           </div>
         </motion.div>
@@ -215,6 +215,7 @@ export const Hero: React.FC<HeroProps> = ({ onCursorChange, onExploreAgents, isI
         <img
           src={IMAGES.heroLaConvencion}
           alt="Cañón del Urubamba y ceja de selva en La Convención, Cusco, Perú"
+          onError={(e) => handleImageError(e)}
           className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-1000 ease-out"
           referrerPolicy="no-referrer"
         />
